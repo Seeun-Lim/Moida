@@ -151,10 +151,10 @@ public class ProjectController {
         Project project = projectService.findById(createDonationReqDto.getProjectId());
 
         // 기부 날짜 사이가 아닌 경우, 오류 반환
-//        LocalDateTime current = LocalDateTime.now();
-//        if (current.isBefore(project.getProjectDonation().getStartDate()) || current.isAfter(project.getProjectDonation().getEndDate())) {
-//            throw new CustomException(ErrorCode.INVALID_DONATION_PERIOD);
-//        }
+       LocalDateTime current = LocalDateTime.now();
+       if (current.isBefore(project.getProjectDonation().getStartDate()) || current.isAfter(project.getProjectDonation().getEndDate())) {
+           throw new CustomException(ErrorCode.INVALID_DONATION_PERIOD);
+       }
 
         Long points = project.getPointPerMoi() * createDonationReqDto.getMoi();
         // 기부하려는 금액이 현재 보유 포인트보다 많은 경우 에러 반환
